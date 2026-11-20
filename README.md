@@ -1,39 +1,67 @@
 # The World Today — Friday, 20 November 2026
 
-Entry for the make.fun competition `news-image-20261120`: one image that
-sums up the world's news of Friday 20 November 2026.
+A newspaper front page for Friday, 20 November 2026, made for the
+news-image-20261120 competition. The image is `entry.png`: a single
+1024 by 1024 front page, laid out like a broadsheet, with the day's
+biggest stories set as headlines above the fold.
 
-## The image
+## What is on the front page
 
-A newspaper front page (`entry.png`, 1024x1024, PNG). Lead story: Trump
-pushes any decision on war with Iran to 2027, saying he will "see what
-happens" after 1 January, as Iran is reported to still hold at least
-2,500 missiles. Also covered: the Trump–Xi–Putin "peace declaration"
-after the Shenzhen trilateral; European leaders in Berlin saying they
-are ready to negotiate with Russia on Ukraine; Anthropic's Nasdaq debut
-(ANT first traded at $111.50, 34% above its $83 IPO price); Cyclone
-Akvan's landfall near Gopalpur, Odisha, with over 100,000 people
-evacuated; NASA confirming Voyager 1 has passed one light-day from
-Earth; JAXA dropping Hayabusa2's asteroid landing after engine trouble;
-GTA 6 sales passing $1.8bn; Henry Nicholls' unbeaten 113 for New
-Zealand against India; plus South Korea's Han Duck-soo acquittal, Fiji's
-drought disaster declaration and a migrant boat sinking off Senegal in
-the footer.
+- **Iran decision deferred.** Washington will not decide on military
+  action against Iran until 2027. US intelligence believes Iran still
+  holds at least 2,500 missiles.
+- **A three-way peace declaration.** Trump, Xi and Putin signed a joint
+  peace declaration after their trilateral meeting in Shenzhen.
+- **Europe prepares to talk.** At the Coalition of the Willing summit in
+  Berlin, European leaders said they are ready for negotiations over
+  Ukraine. Putin responded to the strike on the Crimean Bridge by
+  vowing a far more painful retaliation.
+- **Anthropic joins the market.** The AI company debuted on Nasdaq,
+  first trading at $111.50 — about 34% above its $83 IPO price — and
+  closed the day 17% higher at $97.17.
+- **Cyclone Akvan hits Odisha.** The storm made landfall near Gopalpur
+  with winds of 90–100 km/h gusting to 110. More than a hundred
+  thousand people — 105,304 — were evacuated beforehand.
+- **Voyager 1, one light-day out.** NASA confirmed the probe has now
+  travelled a full light-day from Earth.
+- **Hayabusa2 landing dropped.** JAXA scrapped its plan to land
+  Hayabusa2 on asteroid 1998 KY26 in 2031.
+- **GTA 6 overtakes The Odyssey.** The game's sales have now passed the
+  film's $1.80 billion worldwide gross.
+- **Nicholls stands firm.** Henry Nicholls ended day one of the first
+  Test against India in Wellington unbeaten on 113, New Zealand 243
+  for 5.
 
-## The program
+## How to run it
 
-`main.py` (Python 3, standard library only) copies `entry.png` to
-`/output/entry.png` — or to `$MAKEFUN_OUTPUT_DIR/entry.png` when that
-is set — then verifies the copy is byte-identical, under the 1 MiB
-limit, a valid PNG and at most 1024x1024. It uses no network, so two
-runs write identical bytes.
-
-Run locally:
+`main.py` copies the finished front page to the output directory and
+checks the copy byte for byte. It needs nothing beyond Python 3 and
+the standard library, and it never uses the network.
 
 ```sh
-mkdir -p out && MAKEFUN_OUTPUT_DIR=out python3 main.py
+mkdir -p out
+MAKEFUN_OUTPUT_DIR=out python3 main.py
 ```
+
+That writes `out/entry.png` and prints its path, size in bytes,
+dimensions and SHA-256 digest. The output directory can also be given
+directly, and `--verbose` prints the source details too:
+
+```sh
+python3 main.py --output out --verbose
+```
+
+If the variable is unset and no `--output` is given, the copy goes to
+`/output/entry.png`.
+
+## Verification
+
+The script was run twice in a row into the same directory and both runs
+reported the same SHA-256 digest for `out/entry.png`, identical to the
+digest of `entry.png` itself — so the delivered copy is byte-identical
+to the source image. The file is 1,024,661 bytes at 1024 by 1024
+pixels, inside the competition's one-mebibyte limit.
 
 ## License
 
-MIT. See `LICENSE`.
+MIT — see `LICENSE`.
